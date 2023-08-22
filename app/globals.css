@@ -1,27 +1,159 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/*TODO: header menu top*/
+@layer utilities {
+    .top-33 {
+        top: 33px !important;
+    }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+    .css-invert {
+        @apply invert-[50%] brightness-200;
+    }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
+        border-radius: 2px;
+    }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #ADDFAC;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #67BB5A;
+        border-radius: 50px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #4c9342;
+    }
+
+    .link {
+        cursor: pointer;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .link::before {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #67BB5A;
+        transition: width 0.3s ease;
+    }
+
+    .link:hover {
+        color: #67BB5A;
+    }
+
+    .link:hover::before {
+        width: 100%;
+    }
+
+    .btn-primary:hover {
+        background-color: transparent;
+    }
+
+    .btn-primary::before, .btn-primary::after {
+        content: "";
+        position: absolute;
+        background: #67BB5A;
+        transition: all 0.5s ease;
+        width: 0;
+        height: 2px;
+    }
+
+    .btn-primary::before {
+        top: 0;
+        left: 4px;
+    }
+
+    .btn-primary::after {
+        bottom: 0;
+        right: 4px;
+    }
+
+    .btn-primary:hover::before, .btn-primary:hover::after {
+        width: 75%;
+    }
+
+    .btn-outline::before {
+        content: "";
+        display: inline-block;
+        transform: rotate(50deg);
+        width: 123%;
+        height: 199%;
+        left: -200px;
+        top: -26px;
+        background: #67BB5A;
+        position: absolute;
+        transition: all .5s ease-Out;
+    }
+
+    .btn-outline:hover::before {
+        left: -18px;
+        z-index: -1;
+    }
+
+    .draw-circle {
+        animation: draw-circle 0.8s linear forwards;
+    }
+
+    .draw-line {
+        animation: draw-line 0.5s linear forwards;
+        animation-delay: 0.8s;
+    }
+
+    .spinner {
+        animation: spinner-animation 1s linear infinite;
+    }
+
+    .footer-form {
+        border: 1px solid #B5C3C9;
+        background: rgba(255, 255, 255, 0.47);
+    }
+
+    .sign-in-bg {
+        background: url('/image/sign-in-bg.png') no-repeat;
+        background-size: contain;
+    }
+
+    .profile-bg {
+        background: url('/image/profile-bg.png') no-repeat;
+        background-size: cover;
+    }
+
+    @keyframes spinner-animation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes draw-line {
+        0% {
+            transform: rotate(45deg) translateY(100%);
+            opacity: 1;
+        }
+        100% {
+            transform: rotate(45deg) translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes draw-circle {
+        0% {
+            stroke-dashoffset: 285;
+        }
+        100% {
+            stroke-dashoffset: 0;
+        }
+    }
 }

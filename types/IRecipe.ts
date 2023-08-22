@@ -1,0 +1,30 @@
+export interface IRecipe {
+  _id: string;
+  country: string;
+  description: string;
+  id_: string;
+  keywords: string;
+  is_shoppable: string;
+  language: string;
+  name: string;
+  slug: string;
+  video_url: string;
+  is_licensed_video: string;
+  is_community: string;
+  thumbnail_url: string;
+  inspired_by: string;
+  linked_recipes: string;
+  tags: string;
+  cook_time: number;
+  prep_time: number;
+  total_time: number;
+  ratings_negative: number;
+  ratings_positive: number;
+  score: number;
+  protein: number;
+  fat: number;
+  calories: number;
+  sugar: number;
+  carbohydrates: number;
+  fiber: number;
+}
