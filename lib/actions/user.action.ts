@@ -50,6 +50,50 @@ export const signUp = async (data) => {
   }
 };
 
+export const changeDataUser = async (data: IUser) => {
+  const { userName, email, password, gender, birthDate } = data;
+
+  try {
+    await connectToDB();
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return {
+        message: "User not found",
+        isUpdated: false,
+      };
+    }
+
+    if (userName) {
+      user.userName = userName;
+    }
+    if (gender) {
+      user.gender = gender;
+    }
+
+    if (birthDate) {
+      user.birthDate = birthDate;
+    }
+
+    if (password) {
+      bcrypt.genSalt(10, (err, salt) => {
+        if (err) throw err;
+        bcrypt.hash(password, salt, async (err, hash) => {
+          if (err) throw err;
+          user.password = hash;
+          await user.save();
+        });
+      });
+    }
+    await user.save();
+    return {
+      message: "User updated successfully",
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const forgotPassword = async (email) => {
   await connectToDB();
   try {
@@ -100,11 +144,11 @@ export const forgotPassword = async (email) => {
   }
 };
 
-export const getUser = async (id: string) => {
+export const getUser = async (id: string | null | undefined) => {
   try {
     await connectToDB();
-    const user: IUser = User.findById(id);
-    return user;
+    const user: IUser = await User.findById(id);
+    return JSON.stringify(user);
   } catch (error: any) {
     throw new Error(error.message);
   }

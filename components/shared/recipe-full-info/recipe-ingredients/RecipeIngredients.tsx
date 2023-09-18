@@ -20,7 +20,9 @@ const RecipeIngredients = () => {
       return (
         <div key={section.name} className={"flex flex-col gap-y-6"}>
           {section.name && (
-            <h5 className={"text-lg font-semibold mb-2"}>{section.name}</h5>
+            <h5 className={"text-base lg:text-lg font-semibold mb-2"}>
+              {section.name}
+            </h5>
           )}
           {section.ingredients.map((ingredient, index) => {
             return (
@@ -68,12 +70,11 @@ const RecipeIngredients = () => {
   useEffect(() => {
     getIngredients();
   }, []);
-
   const handleAddAll = () => {
     setShoppingList([]);
     ingredients?.ingredient_sections.forEach((section) => {
       section.ingredients.forEach((ingredient) => {
-        setShoppingList((prev) => [...prev, ingredient]);
+        setShoppingList((prev: IIngredient[]) => [...prev, ingredient]);
       });
     });
     setCheckAll(true);
@@ -81,9 +82,13 @@ const RecipeIngredients = () => {
 
   return (
     <div className={"flex flex-col gap-y-6 mb-12"}>
-      <h4 className={"text-2xl font-bold"}>Ingredients:</h4>
+      <h4 className={"text-xl lg:text-2xl font-bold"}>Ingredients:</h4>
       {!!ingredients && renderIngredients()}
-      <div className={"flex justify-around"}>
+      <div
+        className={
+          "flex flex-col items-center md:items-start md:flex-row justify-around gap-2.5"
+        }
+      >
         <Button onClick={handleAddIngredients} disabled={loading}>
           {loading ? (
             <>
@@ -97,7 +102,7 @@ const RecipeIngredients = () => {
         <Button
           variant={"outline"}
           onClick={handleAddAll}
-          className={"bg-background"}
+          className={"bg-background w-fit"}
         >
           Select all
         </Button>

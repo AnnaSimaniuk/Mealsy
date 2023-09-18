@@ -11,7 +11,12 @@ const RecipeActionBtns = ({ id, image, name }: RecipeActionBtnsProps) => {
   return (
     <div className={"flex gap-x-11 items-center"}>
       <ShareButton />
-      <CookbookButton id={id} image={image} name={name} />
+      <CookbookButton
+        id={id}
+        image={image}
+        name={name}
+        classNameWrapper={"static"}
+      />
     </div>
   );
 };

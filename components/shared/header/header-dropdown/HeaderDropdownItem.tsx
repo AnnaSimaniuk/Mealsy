@@ -4,15 +4,10 @@ import { ITag } from "@/types/ITag";
 
 interface HeaderDropdownItemProps {
   title: string;
-  titleHref: string;
   tagsArr: ITag[];
 }
 
-const HeaderDropdownItem = ({
-  title,
-  titleHref,
-  tagsArr,
-}: HeaderDropdownItemProps) => {
+const HeaderDropdownItem = ({ title, tagsArr }: HeaderDropdownItemProps) => {
   let hideTags = false;
   const renderOptions = () => {
     return tagsArr
@@ -37,7 +32,7 @@ const HeaderDropdownItem = ({
       });
   };
   return (
-    <div className="flex text-black font-normal text-base gap-[20px] items-start flex-col flex-auto">
+    <div className="flex text-black font-normal text-[15px] lg:text-base gap-2.5 lg:gap-[20px] items-start flex-col flex-auto">
       <Link
         href={`/recipe?tag-type=${title}&sort=matches`}
         className={"font-bold link"}
@@ -46,7 +41,7 @@ const HeaderDropdownItem = ({
           {title.toUpperCase().replace("_", " ")}
         </MenubarItem>
       </Link>
-      <div className="flex items-start flex-col gap-[10px]">
+      <div className="flex items-start flex-col gap-2.5">
         {renderOptions()}
         {hideTags ? (
           <Link

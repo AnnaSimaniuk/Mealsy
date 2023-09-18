@@ -1,10 +1,14 @@
-const RoundedPlusIcon = () => (
+import { IIcon } from "@/types/IIcon";
+
+const RoundedPlusIcon = ({ className = "", ...rest }: IIcon) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="70"
     height="69"
     viewBox="0 0 70 69"
     fill="none"
+    className={className}
+    {...rest}
   >
     <g clipPath="url(#clip0_308_845)">
       <path

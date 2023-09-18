@@ -9,6 +9,7 @@ import { ConstructorContextStore } from "@/components/context/ConstructorContext
 import SpinnerIcon from "@/assets/icons/SpinnerIcon";
 
 const AddIngredients = () => {
+  // @ts-ignore
   const { ingredients, setIngredients, error, setError } = useContext(
     ConstructorContextStore
   );
@@ -36,7 +37,7 @@ const AddIngredients = () => {
   };
 
   const handleAddIngredient = (ingredient: IUniqueIngredients) => {
-    setIngredients((prevState) => {
+    setIngredients((prevState: string[]) => {
       if (prevState.includes(ingredient.name)) {
         setError("You have already added this ingredient");
         return prevState;
@@ -50,7 +51,7 @@ const AddIngredients = () => {
   };
 
   const handleDeleteIngredient = (ingredient: string) => {
-    setIngredients((prevState) => {
+    setIngredients((prevState: string[]) => {
       return prevState.filter((item) => item !== ingredient);
     });
   };
@@ -71,10 +72,10 @@ const AddIngredients = () => {
           {error}
         </div>
       )}
-      <div className="mt-7 relative rounded-md border border-secondary bg-white text-xl ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-primary">
+      <div className="mt-2.5 lg:mt-7 relative rounded-md border border-secondary bg-white text-sm lg:text-xl ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-primary">
         {ingredients.length > 0 && (
           <div className="flex flex-wrap gap-2 p-3 relative">
-            {ingredients.map((ingredient) => (
+            {ingredients.map((ingredient: string) => (
               <div
                 className="bg-primary text-white rounded-md px-3 py-1 pr-10 relative font-semibold"
                 key={ingredient}
@@ -90,7 +91,7 @@ const AddIngredients = () => {
             ))}
           </div>
         )}
-        <div className="w-full h-[72px] relative">
+        <div className="w-full h-10 lg:h-[72px] relative">
           <button
             onClick={() =>
               setSearchInput({ ...searchInput, isOpen: !searchInput.isOpen })
@@ -127,7 +128,7 @@ const AddIngredients = () => {
               {ingredientsList.map((ingredient) => (
                 <div
                   className={
-                    "cursor-pointer hover:bg-secondary py-2 text-md px-3"
+                    "cursor-pointer hover:bg-secondary py-2 text-sm lg:text-md px-3"
                   }
                   key={ingredient._id}
                   onClick={() => handleAddIngredient(ingredient)}
@@ -139,7 +140,7 @@ const AddIngredients = () => {
           )}
           {ingredientsList.length === 0 && searchInput.value !== "" && (
             <div className={"w-full mt-3 border-t-secondary  border-t"}>
-              <div className={"py-2 text-md px-3"}>No results</div>
+              <div className={"py-2 text-base lg:text-md px-3"}>No results</div>
             </div>
           )}
         </div>

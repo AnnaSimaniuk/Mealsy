@@ -8,7 +8,7 @@ const ProfileAvatarLayout = ({ children }: { children: ReactNode }) => {
     <SessionProvider>
       <div
         className={
-          "w-[217px] h-[217px] relative shadow rounded-md border-[3px] border-white"
+          "min-w-[80px] w-20 md:w-[157px] lg:w-[217px] h-20 md:h-[157px] lg:h-[217px] relative shadow rounded-md border-[3px] border-white"
         }
       >
         {children}

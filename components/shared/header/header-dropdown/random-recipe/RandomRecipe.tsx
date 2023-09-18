@@ -8,7 +8,11 @@ const RandomRecipe = async () => {
   const randomRecipe: IRecipe = await getRandomRecipe();
 
   return (
-    <div className={"w-[287px] h-214px text-black order-1"}>
+    <div
+      className={
+        "w-[180px] h-[100px] md:w-[248] md:h-[124px] lg:w-[287px] h-214px text-black order-1"
+      }
+    >
       <Link href={`/recipe/${randomRecipe.slug}`}>
         <MenubarItem className={"cursor-pointer flex-col"}>
           <h3>THIS WEEK RECIPE</h3>
@@ -18,7 +22,7 @@ const RandomRecipe = async () => {
             width={287}
             height={144}
             className={
-              "h-[144px] object-cover rounded-[10px] overflow-hidden pt-2 pb-1"
+              "h:[124px] lg:h-[144px] object-cover rounded-[10px] overflow-hidden pt-2 pb-1"
             }
           />
           <p className={"text-dark link"}>{randomRecipe.name}</p>

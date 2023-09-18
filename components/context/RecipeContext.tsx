@@ -10,11 +10,11 @@ interface RecipeContextProps {
 }
 
 const RecipeProvider = ({ children }: RecipeContextProps) => {
-  const [cookbook, setCookbook] = useState<ICookbook>(null);
+  const [cookbook, setCookbook] = useState<ICookbook[] | null>(null);
   const getCookbook = async () => {
     const res = await fetch("/api/cookbook");
-    if (res.status !== 200) return setCookbook(null); //TODO: redirect to 404 page
-    const data: ICookbook = await res.json();
+    if (res.status !== 200) return setCookbook(null);
+    const data: ICookbook[] = await res.json();
     setCookbook(data);
   };
 

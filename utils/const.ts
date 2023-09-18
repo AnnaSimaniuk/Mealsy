@@ -119,3 +119,12 @@ export const ALCOHOL_INGREDIENTS = [
 ];
 
 export const ONION_INGREDIENTS = ["chive", "onion", "shallot", "garlic"];
+
+export const PROFILE_TABS = [
+  { href: "/profile/cookbook", text: "Cookbooks" },
+  { href: "/profile/shopping-list", text: "Shopping list" },
+  {
+    href: "/profile/favorites",
+    text: "Favorites",
+  },
+];

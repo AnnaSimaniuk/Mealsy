@@ -8,7 +8,6 @@ import RecipeList from "@/components/shared/recipe-list/RecipeList";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Subscribe from "@/components/shared/subscribe/Subscribe";
-import { getCookBookByUser } from "../../lib/actions/cookbook.action";
 
 export default async function Home() {
   const popularRecipes = await JSON.parse(
@@ -20,7 +19,7 @@ export default async function Home() {
 
   return (
     <main>
-      <Layout>
+      <Layout className={"px-0 sm:px-8"}>
         <Constructor />
         <RecipeList
           title={"Popular recipes"}

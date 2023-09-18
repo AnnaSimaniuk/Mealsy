@@ -10,17 +10,17 @@ const RecipeInstruction = async ({ name }: RecipeInstructionProps) => {
 
   return (
     <div className={"flex flex-col gap-y-10"}>
-      <h4 className={"text-2xl font-bold"}>Instructions:</h4>
+      <h4 className={"text-xl lg:text-2xl font-bold"}>Instructions:</h4>
       <div className={"flex flex-col gap-y-10"}>
         {instructions.map((instruction, index) => (
           <div
             key={instruction.display_text}
             className={"flex flex-col gap-y-2.5"}
           >
-            <h5 className={"text-2xl font-bold"}>
+            <h5 className={"text-xl lg:text-2xl font-bold"}>
               Step {index + 1}/{instructions.length}
             </h5>
-            <p className={"text-xl"}>{instruction.display_text}</p>
+            <p className={"text-base lg:text-xl"}>{instruction.display_text}</p>
           </div>
         ))}
       </div>

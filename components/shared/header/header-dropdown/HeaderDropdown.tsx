@@ -17,19 +17,14 @@ const HeaderDropdown = async () => {
   return (
     <Menubar>
       <MenubarMenu>
-        <MenubarTrigger className="link text-xl p-0 font-normal">
+        <MenubarTrigger className="link text-base lg:text-xl p-0 font-normal">
           Recipes
         </MenubarTrigger>
 
-        <MenubarContent className="w-[100vw] shadow relative top-[37px] rounded-0">
-          <Layout className={"flex flex-wrap gap-[46px] py-3"}>
+        <MenubarContent className="w-[100vw] shadow relative top-[17px] lg:top-[37px] rounded-0 overflow-auto">
+          <Layout className={"flex flex-wrap gap-6 lg:gap-[46px] py-3"}>
             {uniqueTitle.map((title) => (
-              <HeaderDropdownItem
-                key={title}
-                title={title}
-                tagsArr={tags}
-                titleHref={title}
-              />
+              <HeaderDropdownItem key={title} title={title} tagsArr={tags} />
             ))}
             <RandomRecipe />
           </Layout>

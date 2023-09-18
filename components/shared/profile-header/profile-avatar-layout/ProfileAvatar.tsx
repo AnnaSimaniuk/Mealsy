@@ -27,8 +27,10 @@ const ProfileAvatar = () => {
       {user && user.avatar ? (
         <Image
           src={user.avatar}
-          alt={user.userName}
-          className={"rounded-md w-[217px] h-[217px] object-cover"}
+          alt={user.userName ? user.userName : "avatar"}
+          className={
+            "rounded-md w-20 md:w-[157px] lg:w-[217px] h-20 md:h-[157px] lg:h-[217px] object-cover"
+          }
           width={217}
           height={217}
         />
@@ -38,8 +40,10 @@ const ProfileAvatar = () => {
             "flex items-center justify-center bg-primary w-full h-full rounded-md"
           }
         >
-          <span className={"text-8xl font-bold text-white"}>
-            {user?.userName[0].toUpperCase()}
+          <span
+            className={"text-3xl md:text-6xl lg:text-8xl font-bold text-white"}
+          >
+            {user && user.userName && user?.userName[0]?.toUpperCase()}
           </span>
         </div>
       )}

@@ -21,11 +21,14 @@ interface CreateCookbookModalProps {
 
 const CreateCookbookModal = ({ trigger }: CreateCookbookModalProps) => {
   const [inputValue, setInputValue] = useState<string>("");
+  // @ts-ignore
   const { cookbook, setCookbook } = useContext(RecipeContextStore);
   const { toast } = useToast();
 
   const handleAddCookbook = async () => {
-    const currentBook = cookbook.find((item) => item.name === inputValue);
+    const currentBook = cookbook.find(
+      (item: ICookbook) => item.name === inputValue
+    );
 
     if (currentBook) {
       toast({
@@ -49,7 +52,7 @@ const CreateCookbookModal = ({ trigger }: CreateCookbookModalProps) => {
     if (res.status !== 200) return setCookbook(null); //TODO: redirect to 404 page
     const data: ICookbook = await res.json();
 
-    setCookbook((prev) => [...prev, data]);
+    setCookbook((prev: ICookbook[]) => [...prev, data]);
     setInputValue("");
     toast({
       title: "Cookbook added successfully! 🎉",
@@ -66,10 +69,12 @@ const CreateCookbookModal = ({ trigger }: CreateCookbookModalProps) => {
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent
         className={
-          "text-dark flex flex-col items-center max-h-[95vh] overflow-auto custom-scrollbar"
+          "text-dark flex flex-col items-center max-h-[100vh] md:max-h-[95vh] overflow-auto custom-scrollbar"
         }
       >
-        <DialogTitle className={"font-medium text-3xl mb-2.5"}>
+        <DialogTitle
+          className={"font-medium text-xl md:text-2xl lg:text-3xl mb-2.5"}
+        >
           CREATE A NEW COOKBOOK
         </DialogTitle>
         <div className={"flex flex-col gap-2.5"}>

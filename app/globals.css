@@ -120,7 +120,7 @@
 
     .sign-in-bg {
         background: url('/image/sign-in-bg.png') no-repeat;
-        background-size: contain;
+        background-size: cover;
     }
 
     .profile-bg {

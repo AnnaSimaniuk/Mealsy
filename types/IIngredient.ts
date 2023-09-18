@@ -1,4 +1,4 @@
-interface IIngredientItem {
+export interface IIngredientItem {
   extra_comment: string;
   name: string;
   primary_unit: {

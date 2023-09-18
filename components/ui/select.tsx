@@ -19,7 +19,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-10 w-full items-center justify-between rounded-md border border-[#B5C3C9] focus:border-primary bg-white px-3 py-2 text-xl ring-offset-none placeholder:text-slate-500 focus:outline-none focus:ring-0 focus:ring-slate-950 focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:border-slate-800 dark:bg-slate-950 dark:ring-offset-slate-950 dark:placeholder:text-slate-400 dark:focus:ring-slate-300",
+      "flex h-full w-full items-center justify-between rounded-md border border-[#B5C3C9] focus:border-primary bg-white px-6 py-2.5 text-base lg:text-xl ring-offset-none placeholder:text-slate-500 focus:outline-none focus:ring-0 focus:ring-slate-950 focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:border-slate-800 dark:bg-slate-950 dark:ring-offset-slate-950 dark:placeholder:text-slate-400 dark:focus:ring-slate-300",
       className
     )}
     {...props}
@@ -68,7 +68,10 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
-    className={cn("py-1.5 pl-8 pr-2 text-xl font-semibold", className)}
+    className={cn(
+      "py-1.5 pl-8 pr-2 text-base lg:text-xl font-semibold",
+      className
+    )}
     {...props}
   />
 ));
@@ -81,7 +84,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-xl outline-none focus:bg-secondary focus:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-slate-800 dark:focus:text-slate-50",
+      "relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-base lg:text-xl outline-none focus:bg-secondary focus:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-slate-800 dark:focus:text-slate-50",
       className
     )}
     {...props}

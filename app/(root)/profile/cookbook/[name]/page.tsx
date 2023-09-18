@@ -2,8 +2,9 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { getRecipesByName } from "@/lib/actions/cookbook.action";
 import CookbookRecipeItem from "@/components/shared/recipe-list/recipe-item/CookbookResipeItem";
 import EmptyPage from "@/components/shared/profile-tab/empty-page/EmptyPage";
+import { IRecipe } from "@/types/IRecipe";
 
-const breadcrumbs = (name) => {
+const breadcrumbs = (name: string) => {
   return [
     {
       name: "Home",
@@ -20,21 +21,24 @@ const breadcrumbs = (name) => {
   ];
 };
 
-export default async function CookbookPage({
+export default async function CookbookRecipePage({
   params,
 }: {
   params: { name: string };
 }) {
+  // @ts-ignore
   let cookbook = await JSON.parse(await getRecipesByName(params.name));
 
   return (
     <div className={"mt-5 flex flex-col"}>
       <Breadcrumbs breadcrumbs={breadcrumbs(params.name)} />
-      <h2 className={"font-bold text-4xl mb-12"}>{cookbook.name}</h2>
-      <div className={"mb-[150px]"}>
+      <h2 className={"font-bold text-xl lg:text-4xl mb-5 lg:mb-12"}>
+        {cookbook.name}
+      </h2>
+      <div className={"mb-12 lg:mb-[150px]"}>
         {cookbook.recipes.length > 0 ? (
-          <div className={"flex flex-wrap gap-7"}>
-            {cookbook.recipes.map((recipe) => (
+          <div className={"flex flex-wrap gap-2.5 md:gap-7"}>
+            {cookbook.recipes.map((recipe: IRecipe) => (
               <CookbookRecipeItem
                 recipe={recipe}
                 key={recipe._id}

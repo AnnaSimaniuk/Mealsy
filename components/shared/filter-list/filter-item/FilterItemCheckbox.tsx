@@ -18,6 +18,7 @@ const FilterItemCheckbox = ({
   name,
 }: FilterItemCheckboxProps) => {
   const searchParams = useSearchParams();
+  // @ts-ignore
   const params = new URLSearchParams(searchParams);
   const condition = !!params.get("tag-name")?.split(",")?.includes(name);
   const [checked, setChecked] = useState(condition);
@@ -25,9 +26,14 @@ const FilterItemCheckbox = ({
   const handleChecked = () => {
     setChecked(!checked);
     if (checked) {
-      setCheckedFilters((prev) => prev.filter((item) => item.name !== name));
+      setCheckedFilters((prev: { type: string; name: string }[]) =>
+        prev.filter((item) => item.name !== name)
+      );
     } else {
-      setCheckedFilters((prev) => [...prev, { name, type }]);
+      setCheckedFilters((prev: { type: string; name: string }[]) => [
+        ...prev,
+        { name, type },
+      ]);
     }
   };
 
@@ -43,7 +49,9 @@ const FilterItemCheckbox = ({
   return (
     <div
       onClick={handleChecked}
-      className={"flex gap-x-2.5 text-xl items-center cursor-pointer"}
+      className={
+        "flex gap-x-2.5 text-base lg:text-xl items-center cursor-pointer"
+      }
     >
       <RecipeCheckedIcon checked={checked} />
       <div>{display_name}</div>

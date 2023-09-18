@@ -15,6 +15,7 @@ import useQueryString from "@/lib/hook/useQueryString";
 
 const SortList = () => {
   const searchParams = useSearchParams();
+  // @ts-ignore
   const params = new URLSearchParams(searchParams);
   const [sort, setSort] = useState(params.get("sort") || "matches");
   const { pathname, createQueryString } = useQueryString();
@@ -29,7 +30,7 @@ const SortList = () => {
   }, [searchParams]);
 
   return (
-    <div className={"flex ml-auto gap-x-5 text-xl text-black"}>
+    <div className={"flex ml-auto gap-x-5 text-base lg:text-xl text-black"}>
       <div className={"flex gap-x-1.5 items-center"}>
         <h6>Sort by:</h6>
         <DropdownMenu>

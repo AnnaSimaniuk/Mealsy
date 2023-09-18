@@ -23,29 +23,48 @@ const RecipeFullInfo = async ({ params }: RecipeFullInfoProps) => {
   const recipe: IRecipe = await JSON.parse(await getRecipeBySlug(params.name));
 
   return (
-    <div className={"flex text-dark gap-x-10 mb-24"}>
-      <div className={"flex flex-col max-w-[522px]"}>
-        <Image
-          src={recipe.thumbnail_url}
-          alt={recipe.name}
-          width={522}
-          height={522}
-          className={"rounded-md w-[522px] h-[522px] object-cover mb-5"}
-        />
+    <div className={"flex flex-col lg:flex-row text-dark gap-10 mb-24"}>
+      <div className={"flex flex-col lg:max-w-[522px]"}>
+        <div className={"flex flex-col-reverse md:flex-row gap-5"}>
+          <Image
+            src={recipe.thumbnail_url}
+            alt={recipe.name}
+            width={522}
+            height={522}
+            className={
+              "rounded-md w-full md:w-[216px] lg:w-[522px] md:h-[216px] lg:h-[522px] object-cover mb-5"
+            }
+          />
+          <div className={"flex flex-col gap-5 lg:hidden"}>
+            <h1 className={"text-xl lg:text-3xl font-bold"}>{recipe.name}</h1>
+            <div className={"flex justify-between gap-x-10 items-center"}>
+              {recipe.keywords && <RecipeKeywords keywords={recipe.keywords} />}
+              <RecipeProvider>
+                <RecipeActionBtns
+                  id={recipe._id}
+                  image={recipe.thumbnail_url}
+                  name={recipe.name}
+                />
+              </RecipeProvider>
+            </div>
+          </div>
+        </div>
         <RecipeIngredients />
         <RecipeTags params={params} />
       </div>
       <div className={"flex flex-col gap-y-8 flex-1"}>
-        <h1 className={"text-3xl font-bold"}>{recipe.name}</h1>
-        <div className={"flex justify-between gap-x-10 items-center"}>
-          {recipe.keywords && <RecipeKeywords keywords={recipe.keywords} />}
-          <RecipeProvider>
-            <RecipeActionBtns
-              id={recipe._id}
-              image={recipe.thumbnail_url}
-              name={recipe.name}
-            />
-          </RecipeProvider>
+        <div className={"hidden lg:flex flex-col gap-y-8 "}>
+          <h1 className={"text-xl lg:text-3xl font-bold"}>{recipe.name}</h1>
+          <div className={"flex justify-between gap-x-10 items-center"}>
+            {recipe.keywords && <RecipeKeywords keywords={recipe.keywords} />}
+            <RecipeProvider>
+              <RecipeActionBtns
+                id={recipe._id}
+                image={recipe.thumbnail_url}
+                name={recipe.name}
+              />
+            </RecipeProvider>
+          </div>
         </div>
         <RecipeNutritionValue recipe={recipe} />
         <RecipeRatingAction recipe={recipe} />

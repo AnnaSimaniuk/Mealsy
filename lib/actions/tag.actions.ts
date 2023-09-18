@@ -3,13 +3,14 @@
 import { connectToDB } from "@/lib/mongoose";
 import Tag from "@/lib/models/tag.model";
 import Recipe from "@/lib/models/recipe.model";
+import { ITag } from "@/types/ITag";
 
 export const getUniqueTags = async () => {
   try {
     await connectToDB();
     const tags = await Tag.find({});
     return [...new Set(tags.map((tag) => tag.type))];
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error.message);
   }
 };
@@ -19,12 +20,12 @@ export const getAllTags = async () => {
     await connectToDB();
     const res = await Tag.find({});
     return JSON.stringify(res);
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error.message);
   }
 };
 
-export const getTagsByRecipe = async (name) => {
+export const getTagsByRecipe = async (name: string) => {
   try {
     await connectToDB();
     const recipeTags = await Recipe.findOne({ slug: name }).select("tags");
@@ -36,8 +37,8 @@ export const getTagsByRecipe = async (name) => {
         return unique;
       }, {})
     );
-    return uniqueTags;
-  } catch (error) {
+    return uniqueTags as ITag[];
+  } catch (error: any) {
     throw new Error(error.message);
   }
 };

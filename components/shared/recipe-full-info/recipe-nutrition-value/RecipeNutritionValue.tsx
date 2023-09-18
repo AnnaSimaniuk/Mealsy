@@ -9,10 +9,13 @@ interface RecipeNutritionValueProps {
 const RecipeNutritionValue = ({ recipe }: RecipeNutritionValueProps) => {
   return (
     <div className={"flex flex-col gap-y-5"}>
-      <h4 className={"text-2xl font-bold"}>Nutritional value per serving:</h4>
+      <h4 className={"text-xl lg:text-2xl font-bold"}>
+        Nutritional value per serving:
+      </h4>
       <div className={"flex flex-wrap gap-4 justify-between"}>
         {data.map(({ title, textColor, borderColor, bgColor }) => (
           <RecipeNutritionItem
+            key={title}
             title={title}
             bgColor={bgColor}
             borderColor={borderColor}

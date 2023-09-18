@@ -29,7 +29,7 @@ const FilterItem = ({ type, arr, setCheckedFilters }: FilterItemProps) => {
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value={type}>
-        <AccordionTrigger className={"text-xl"}>
+        <AccordionTrigger className={"text-base lg:text-xl"}>
           {type.replace("_", " ").toUpperCase()}
         </AccordionTrigger>
         <AccordionContent>
@@ -50,7 +50,7 @@ const FilterItem = ({ type, arr, setCheckedFilters }: FilterItemProps) => {
           })}
           {arr.length > 5 && (
             <div
-              className={`text-xl font-bold text-primary cursor-pointer`}
+              className={`text-base lg:text-xl font-bold text-primary cursor-pointer`}
               onClick={handleShowMore}
             >
               {limit === arr.length ? "Show less" : "Show more"}

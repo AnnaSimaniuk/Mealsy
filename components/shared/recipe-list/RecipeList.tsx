@@ -14,10 +14,18 @@ interface RecipeListProps {
 
 const RecipeList = ({ title, arr, button }: RecipeListProps) => {
   return (
-    <Layout className={"flex flex-col gap-y-12 items-center mb-36"}>
-      <h2 className={"font-bold text-4xl self-start"}>{title}</h2>
+    <Layout
+      className={
+        "flex flex-col gap-y-5 lg:gap-y-12 items-center mb-12 lg:mb-36 px-2.5 sm:px-0"
+      }
+    >
+      <h2 className={"font-bold text-xl lg:text-4xl self-start"}>{title}</h2>
       <RecipeProvider>
-        <div className={"flex justify-around flex-wrap gap-y-12 gap-x-24"}>
+        <div
+          className={
+            "flex justify-around flex-wrap gap-y-5 lg:gap-y-12 gap-x-2.5 lg:gap-x-24"
+          }
+        >
           {arr.map((recipe) => (
             <RecipeItem recipe={recipe} key={recipe.id_} />
           ))}

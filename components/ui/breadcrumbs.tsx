@@ -29,7 +29,7 @@ const Breadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
       } else {
         return (
           <span
-            className={"text-xl text-dark font-medium"}
+            className={"text-xs md:text-sm lg:text-xl text-dark font-medium"}
             key={pathObject.name}
           >
             {pathObject.name}
@@ -39,7 +39,11 @@ const Breadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
     });
   };
   return (
-    <div className={"text-xl text-grey-500 font-medium flex my-12"}>
+    <div
+      className={
+        "text-xs md:text-sm lg:text-xl text-grey-500 font-medium flex my-12"
+      }
+    >
       {renderOptions()}
     </div>
   );

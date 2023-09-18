@@ -67,7 +67,7 @@ const SignInForm = () => {
 
   return (
     <div className={"mt-7 flex flex-col gap-y-5"}>
-      <h4 className={"font-medium text-xl"}>Enter profile</h4>
+      <h4 className={"font-medium txt-base xl:text-xl"}>Enter profile</h4>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -128,7 +128,7 @@ const SignInForm = () => {
       </Form>
       <Divider text={"or enter"} />
       <GoogleButton text={"Sign in with Google"} />
-      <div className={"text-base text-black"}>
+      <div className={"text-sm lg:text-base text-black"}>
         Not registered?{" "}
         <Link href={"/sign-up"} className={"text-primary cursor-pointer link"}>
           Sign up
@@ -139,5 +139,3 @@ const SignInForm = () => {
 };
 
 export default SignInForm;
-
-//TODO: add forgot password link

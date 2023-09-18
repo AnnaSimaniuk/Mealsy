@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -26,6 +28,7 @@ module.exports = {
       white: "#FFFFFF",
       "white-500": "rgba(255, 255, 255, 0.51)",
       black: "#000000",
+      "black-500": "rgba(0, 0, 0, 0.51)",
       "red-500": "#EF4444",
       "red-900": "#991B1B",
       orange: "#F7931E",
@@ -34,6 +37,10 @@ module.exports = {
       DEFAULT: "0px 4px 14px rgba(66, 59, 59, 0.1)",
     },
     extend: {
+      screens: {
+        xs: "425px",
+        ...defaultTheme.screens,
+      },
       keyframes: {
         "accordion-down": {
           from: { height: 0 },

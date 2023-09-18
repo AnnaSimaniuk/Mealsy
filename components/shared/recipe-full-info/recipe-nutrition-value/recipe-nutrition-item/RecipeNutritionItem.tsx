@@ -17,8 +17,8 @@ const RecipeNutritionItem = ({
     <div
       className={`flex flex-col py-5 px-1 w-[125px] border ${bgColor} ${borderColor} gap-y-5 rounded-md items-center`}
     >
-      <span className={`text-base ${textColor}`}>{title}</span>
-      <span className={`text-base`}>{value}</span>
+      <span className={`text-sm lg:text-base ${textColor}`}>{title}</span>
+      <span className={`text-sm lg:text-base`}>{value ? value : "---"}</span>
     </div>
   );
 };

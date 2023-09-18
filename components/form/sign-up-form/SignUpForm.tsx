@@ -40,7 +40,7 @@ const SignUpForm = () => {
     setLoading(true);
     const res = await signUp(values);
     setLoading(false);
-    if (res.isCreated) {
+    if (res?.isCreated) {
       toast({
         title: "Account created!",
         description:
@@ -52,7 +52,7 @@ const SignUpForm = () => {
     } else {
       toast({
         title: "Account creation failed!",
-        description: res.message,
+        description: res?.message,
         variant: "destructive",
         duration: 3000,
       });
@@ -61,7 +61,7 @@ const SignUpForm = () => {
 
   return (
     <div className={"flex gap-y-5 mt-[30px] flex-col"}>
-      <h5 className={"text-2xl"}>Create an account</h5>
+      <h5 className={"text-xl lg:text-2xl"}>Create an account</h5>
       <GoogleButton text={"Sign up with Google"} />
       <Divider text={"or use email"} />
       <Form {...form}>
@@ -136,7 +136,7 @@ const SignUpForm = () => {
           </Button>
         </form>
       </Form>
-      <div className={"text-base text-black"}>
+      <div className={"text-sm lg:text-base text-black"}>
         Already have an account?{" "}
         <Link href={"/sign-in"} className={"text-primary cursor-pointer link"}>
           Sign in

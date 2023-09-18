@@ -91,7 +91,7 @@ const SubscribeForm = ({ classInput = "" }: { classInput?: string }) => {
           </Button>
         </form>
       </Form>
-      <p className={"text-primary text-lg font-medium"}>{message}</p>
+      <p className={"text-primary text-base lg:text-lg font-medium"}>{message}</p>
     </>
   );
 };

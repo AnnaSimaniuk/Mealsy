@@ -8,25 +8,21 @@ export const POST = async (request: Request) => {
   const { recipeName, neededIngredients } = await request.json();
   try {
     await connectToDB();
-    const { user } = await getServerSession(authConfig);
+    const session = await getServerSession(authConfig);
 
-    if (!user) {
-      new Response("Unauthorized", { status: 401 });
+    if (session && !session.user) {
+      return new Response("Unauthorized", { status: 401 });
     }
-    const ingredients = neededIngredients.map((ingredient) => ({
-      ingredient: ingredient._id,
-      checked: false,
-    }));
 
     const recipeId = await Recipe.findOne({ slug: recipeName }).select("_id");
 
     const existingShoppingList = await ShoppingList.findOne({
       recipe: recipeId,
-      user: user.id,
+      user: session?.user?.id,
     });
 
     if (existingShoppingList) {
-      existingShoppingList.neededIngredients = ingredients;
+      existingShoppingList.neededIngredients = neededIngredients;
       await existingShoppingList.save();
       return new Response(JSON.stringify("Shopping list updated"), {
         status: 200,
@@ -35,20 +31,20 @@ export const POST = async (request: Request) => {
 
     const newShoppingList = {
       recipe: recipeId,
-      user: user.id,
-      neededIngredients: ingredients,
+      user: session?.user?.id,
+      neededIngredients,
     };
 
     await ShoppingList.create(newShoppingList);
     return new Response(JSON.stringify("Shopping list created"), {
       status: 201,
     });
-  } catch (error) {
+  } catch (error: any) {
     return new Response(error, { status: 500 });
   }
 };
 
-export const GET = async (request: Request) => {
+export const GET = async () => {
   try {
     await connectToDB();
     const { user } = await getServerSession(authConfig);
@@ -57,12 +53,12 @@ export const GET = async (request: Request) => {
       new Response("Unauthorized", { status: 401 });
     }
 
-    const shoppingList = await ShoppingList.find({ user: user.id })
-      .populate("recipe")
-      .populate("neededIngredients.ingredient");
+    const shoppingList = await ShoppingList.find({ user: user.id }).populate(
+      "recipe"
+    );
 
     return new Response(JSON.stringify(shoppingList), { status: 200 });
-  } catch (error) {
+  } catch (error: any) {
     return new Response(error, { status: 500 });
   }
 };

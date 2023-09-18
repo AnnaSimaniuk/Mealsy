@@ -12,11 +12,12 @@ const options = [
 ];
 
 const TimeCooking = () => {
+  // @ts-ignore
   const { time, setTime } = useContext(ConstructorContextStore);
 
   return (
     <div className={"flex flex-col"}>
-      <h5 className="font-bold mb-[30px]">Cooking time:</h5>
+      <h5 className="font-bold mb-2 lg:mb-[30px]">Cooking time:</h5>
       <Slider
         max={4}
         step={1}
@@ -25,7 +26,7 @@ const TimeCooking = () => {
       />
       <div
         className={
-          "flex items-center text-center font-medium text-base justify-around pt-2"
+          "flex items-center text-center font-medium text-[10px] lg:text-base justify-around pt-2"
         }
       >
         {options.map((option, index) => (

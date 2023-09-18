@@ -13,13 +13,14 @@ import { AdditionalIngredientsOption } from "@/types/AdditionalIngredientsOption
 const options: AdditionalIngredientsOption[] = ["0", "1", "2", "3", "4", "5"];
 
 const AdditionalIngredients = () => {
+  // @ts-ignore
   const { additionalIngredients, setAdditionalIngredients } = useContext(
     ConstructorContextStore
   );
 
   return (
     <div className={"flex flex-col"}>
-      <div className={"flex"}>
+      <div className={"flex items-center gap-2.5"}>
         <h5 className="font-bold">
           Include additional ingredients in the recipe?
         </h5>
@@ -43,7 +44,7 @@ const AdditionalIngredients = () => {
           <div
             key={option}
             onClick={() => setAdditionalIngredients(option)}
-            className={`flex items-center justify-center w-14 h-14 rounded-full cursor-pointer text-2xl font-semibold bg-[#EDFFE3] border hover:border-primary transition duration-300 ease-in-out ${
+            className={`flex items-center justify-center w-10 h-10 lg:w-14 lg:h-14 rounded-full cursor-pointer text-base lg:text-2xl font-semibold bg-[#EDFFE3] border hover:border-primary transition duration-300 ease-in-out ${
               additionalIngredients === option
                 ? "border-primary"
                 : "border-[#EDFFE3]"
@@ -54,8 +55,10 @@ const AdditionalIngredients = () => {
         ))}
       </div>
       <div className={"flex gap-2 items-center"}>
-        <div className={"text-red-500 text-3xl font-semibold"}>!</div>
-        <p className={"text-secondary text-md"}>
+        <div className={"text-red-500 text-xl lg:text-3xl font-semibold"}>
+          !
+        </div>
+        <p className={"text-secondary text-xs lg:text-md"}>
           Spices, sauces, syrups and herbs are not considered{" "}
           <span className={"font-bold"}>main</span> ingredients
         </p>

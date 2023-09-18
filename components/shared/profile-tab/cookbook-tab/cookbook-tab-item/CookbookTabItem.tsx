@@ -13,6 +13,7 @@ import { Input } from "../../../../ui/input";
 import { Button } from "../../../../ui/button";
 import { RecipeContextStore } from "../../../../context/RecipeContext";
 import Link from "next/link";
+import { ICookbook } from "@/types/ICookbook";
 
 interface CookbookTabItemProps {
   imageRecipe1?: string;
@@ -33,6 +34,7 @@ const CookbookTabItem = ({
 }: CookbookTabItemProps) => {
   const [editName, setEditName] = useState<string>(name);
   const [isEditName, setIsEditName] = useState<boolean>(false);
+  // @ts-ignore
   const { setCookbook } = useContext(RecipeContextStore);
 
   const handleEditName = async () => {
@@ -52,7 +54,7 @@ const CookbookTabItem = ({
     if (res.status !== 200) return;
     const data = await res.json();
 
-    setCookbook((prev) =>
+    setCookbook((prev: ICookbook[]) =>
       prev.map((item) => (item._id === data._id ? data : item))
     );
   };
@@ -69,10 +71,16 @@ const CookbookTabItem = ({
     });
     if (res.status !== 200) return;
     const data = await res.json();
-    setCookbook((prev) => prev.filter((item) => item._id !== data._id));
+    setCookbook((prev: ICookbook[]) =>
+      prev.filter((item) => item._id !== data._id)
+    );
   };
   return (
-    <div className={"flex flex-col max-w-[370px] text-dark gap-2.5"}>
+    <div
+      className={
+        "flex flex-col max-w-[167px] md:max-w-[295px] lg:max-w-[370px] text-dark gap-2.5"
+      }
+    >
       <div
         className={
           "flex flex-col gap-2.5 max-h-[500px] rounded-md overflow-hidden"
@@ -83,7 +91,9 @@ const CookbookTabItem = ({
           alt={name}
           width={370}
           height={246}
-          className={"w-[370px] h-[246px] object-cover"}
+          className={
+            "w-[167px] md:w-[295px] lg:w-[370px] h-[111px] md:h-[196px] lg:h-[246px] object-cover"
+          }
         />
         <div className={"flex gap-2.5"}>
           <Image
@@ -91,20 +101,26 @@ const CookbookTabItem = ({
             alt={name}
             width={185}
             height={245}
-            className={"w-[185px] h-[245px] object-cover"}
+            className={
+              "w-[80px] md:w-[144px] lg:w-[185px] h-[106px] md:h-[184px] lg:h-[245px] object-cover"
+            }
           />
           <Image
             src={imageRecipe3 || "/image/new-cookbook3.png"}
             alt={name}
             width={185}
             height={245}
-            className={"w-[185px] h-[245px] object-cover"}
+            className={
+              "w-[80px] md:w-[144px] lg:w-[185px] h-[106px] md:h-[184px] lg:h-[245px] object-cover"
+            }
           />
         </div>
       </div>
       <div className={"flex justify-between"}>
         <Link href={`/profile/cookbook/${name.replace(" ", "-")}`}>
-          <h3 className={"text-xl font-bold link"}>{name}</h3>
+          <h3 className={"text-sm md:text-base lg:text-xl font-bold link"}>
+            {name}
+          </h3>
         </Link>
         <DropdownMenu>
           <DropdownMenuTrigger className={"cursor-pointer"}>
@@ -112,7 +128,9 @@ const CookbookTabItem = ({
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <div
-              className={"cursor-pointer text-xl px-2 py-1.5"}
+              className={
+                "cursor-pointer text-sm md:text-base lg:text-xl px-2 py-1.5"
+              }
               onClick={() => setIsEditName(true)}
             >
               Edit name
@@ -130,7 +148,9 @@ const CookbookTabItem = ({
               </div>
             )}
             <DropdownMenuItem
-              className={"text-[#FD3B3B] cursor-pointer text-xl"}
+              className={
+                "text-[#FD3B3B] cursor-pointer text-sm md:text-base lg:text-xl"
+              }
               onClick={handleDeleteCookbook}
             >
               Delete
@@ -138,7 +158,7 @@ const CookbookTabItem = ({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <p className={"text-base"}>
+      <p className={"text-xs md:text-sm lg:text-base"}>
         {count} {count > 1 ? "recipes" : "recipe"}
       </p>
     </div>

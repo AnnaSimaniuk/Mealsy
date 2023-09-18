@@ -29,7 +29,11 @@ const FilterRecipeList = () => {
   }, [limit, searchParams]);
 
   return (
-    <div className={"flex flex-col p-[30px] shadow bg-white w-full gap-12"}>
+    <div
+      className={
+        "flex flex-col sm:p-[30px] sm:shadow sm:bg-white w-full gap-12"
+      }
+    >
       <RecipeProvider>
         <div className={"flex flex-wrap justify-between gap-y-[30px]"}>
           {recipes.map((recipe) => (

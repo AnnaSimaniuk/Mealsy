@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input";
 import SearchIcon from "@/assets/icons/SearchIcon";
 
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const SearchInput = () => {
@@ -13,7 +13,7 @@ const SearchInput = () => {
     searchParams.get("search") || ""
   );
   const [isSearching, setIsSearching] = useState(false);
-  console.log();
+
   useEffect(() => {
     if (isSearching) {
       const timeout = setTimeout(() => {
@@ -28,16 +28,18 @@ const SearchInput = () => {
     }
   }, [searchText, router, isSearching]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setIsSearching(true);
-    const text = e.target.value;
-    setSearchText(text);
+    if (e.target) {
+      const text = e.target.value;
+      setSearchText(text);
+    }
   };
 
   return (
-    <div className="w-[473px] h-[48px] relative">
+    <div className="w-full md:w-[210px] h-[37px] lg:w-[473px] lg:h-[48px] relative">
       <button className="absolute top-1/2 left-6 transform -translate-y-1/2 cursor-pointer">
-        <SearchIcon />
+        <SearchIcon className={"w-4 h-4 lg:w-6 lg:h-6"} />
       </button>
       <Input
         placeholder={"Search recipes..."}

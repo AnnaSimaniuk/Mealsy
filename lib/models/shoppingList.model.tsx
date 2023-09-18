@@ -13,9 +13,15 @@ const shoppingListSchema = new mongoose.Schema({
   },
   neededIngredients: [
     {
-      ingredient: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Ingredient",
+      extra_comment: String,
+      name: String,
+      primary_unit: {
+        quantity: String,
+        display: String,
+      },
+      metric_unit: {
+        quantity: String,
+        display: String,
       },
       checked: {
         type: Boolean,

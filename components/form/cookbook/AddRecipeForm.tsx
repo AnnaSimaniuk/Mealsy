@@ -27,6 +27,7 @@ import { DialogTrigger } from "@/components/ui/dialog";
 import { Dispatch, useContext } from "react";
 import { RecipeContextStore } from "@/components/context/RecipeContext";
 import { ICookbook } from "@/types/ICookbook";
+import { IRecipe } from "@/types/IRecipe";
 
 interface AddRecipeFormProps {
   recipeId: string;
@@ -35,6 +36,7 @@ interface AddRecipeFormProps {
 
 const AddRecipeForm = ({ recipeId, setIsBookmarked }: AddRecipeFormProps) => {
   const { toast } = useToast();
+  // @ts-ignore
   const { cookbook, setCookbook } = useContext(RecipeContextStore);
   const form = useForm<z.infer<typeof cookbookNameValidation>>({
     resolver: zodResolver(cookbookNameValidation),
@@ -43,9 +45,13 @@ const AddRecipeForm = ({ recipeId, setIsBookmarked }: AddRecipeFormProps) => {
     },
   });
   const onSubmit = async (values: z.infer<typeof cookbookNameValidation>) => {
-    const currentBook = cookbook.find((item) => item.name === values.name);
+    const currentBook = cookbook.find(
+      (item: ICookbook) => item.name === values.name
+    );
 
-    if (currentBook.recipes.some((recipe) => recipe._id === recipeId)) {
+    if (
+      currentBook.recipes.some((recipe: IRecipe) => recipe._id === recipeId)
+    ) {
       toast({
         title: "Hey! This recipe is already in your cookbook. 😊",
         variant: "destructive",
@@ -60,10 +66,10 @@ const AddRecipeForm = ({ recipeId, setIsBookmarked }: AddRecipeFormProps) => {
         id: currentBook._id,
       }),
     });
-    if (res.status !== 200) return setCookbook(null); //TODO: redirect to 404 page
+    if (res.status !== 200) return setCookbook(null);
     const data: ICookbook = await res.json();
 
-    setCookbook((prev) =>
+    setCookbook((prev: ICookbook[]) =>
       prev.map((item) => (item._id === data._id ? data : item))
     );
     setIsBookmarked(true);
@@ -96,7 +102,7 @@ const AddRecipeForm = ({ recipeId, setIsBookmarked }: AddRecipeFormProps) => {
                     <SelectContent>
                       <SelectGroup>
                         <SelectLabel>Choose cookbook:</SelectLabel>
-                        {cookbook.map((item) => (
+                        {cookbook.map((item: ICookbook) => (
                           <SelectItem value={item.name} key={item.name}>
                             {item.name}
                           </SelectItem>

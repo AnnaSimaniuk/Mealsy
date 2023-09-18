@@ -87,7 +87,9 @@ const Carousel = () => {
                   alt={item.display_name}
                   width={145}
                   height={145}
-                  className={"rounded-md min-w-[145px] min-h-[145px]"}
+                  className={
+                    "rounded-md md:min-w-[145px] md:min-h-[145px] min-w-[100px] min-h-[100px]"
+                  }
                 />
                 <Link
                   href={`/recipe?tag-name=${item.tag}&sort=matches`}

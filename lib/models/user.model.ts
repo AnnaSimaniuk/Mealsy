@@ -16,6 +16,12 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
+  gender: {
+    type: String,
+  },
+  birthDate: {
+    type: Date,
+  },
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

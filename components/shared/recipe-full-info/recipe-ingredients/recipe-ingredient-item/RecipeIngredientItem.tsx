@@ -2,6 +2,7 @@
 
 import RecipeCheckedIcon from "@/components/shared/recipe-full-info/recipe-ingredients/recipe-ingredient-item/RecipeCheckedIcon";
 import { useEffect, useState } from "react";
+import { IIngredient } from "@/types/IIngredient";
 
 interface RecipeIngredientItemProps {
   ingredient: {
@@ -32,11 +33,11 @@ const RecipeIngredientItem = ({
     setCheckAll(false);
     setChecked(!checked);
     if (checked) {
-      setShoppingList((prev) =>
+      setShoppingList((prev: IIngredient[]) =>
         prev.filter((item) => item.name !== ingredient.name)
       );
     } else {
-      setShoppingList((prev) => [...prev, ingredient]);
+      setShoppingList((prev: IIngredient[]) => [...prev, ingredient]);
     }
   };
 
@@ -50,13 +51,13 @@ const RecipeIngredientItem = ({
     <div
       onClick={handleCheck}
       className={
-        "flex pb-5 border-b-primary border-b gap-x-2.5 text-xl items-center cursor-pointer"
+        "flex pb-5 border-b-primary border-b gap-x-2.5 text-base lg:text-xl items-center cursor-pointer"
       }
     >
       <RecipeCheckedIcon checked={checked} />
       <div>{ingredient.name}</div>
       {ingredient.extra_comment && (
-        <div className={"text-base text-gray"}>
+        <div className={"text-sm lg:text-base text-gray"}>
           ({ingredient.extra_comment})
         </div>
       )}

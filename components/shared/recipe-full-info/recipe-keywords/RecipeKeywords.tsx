@@ -7,7 +7,7 @@ const RecipeKeywords = ({ keywords }: RecipeKeywordsProps) => {
   return (
     <div className={"flex flex-wrap gap-1.5"}>
       {keywordsArray.map((keyword) => (
-        <span className={"text-sm font-medium"}>
+        <span className={"text-xs lg:text-sm font-medium"}>
           #{keyword.trim().split(" ").join("_")}
         </span>
       ))}

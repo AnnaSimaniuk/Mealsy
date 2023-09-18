@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import Subscribe from "@/components/shared/subscribe/Subscribe";
 import useQueryString from "@/lib/hook/useQueryString";
 import { useRouter, useSearchParams } from "next/navigation";
+import FilterListMobile from "@/components/shared/filter-list/FilterListMobile";
 
 const FilterList = () => {
   const [filters, setFilters] = useState<ITag[] | []>([]);
@@ -17,6 +18,7 @@ const FilterList = () => {
   const { pathname, createQueryString } = useQueryString();
   const router = useRouter();
   const searchParams = useSearchParams();
+  // @ts-ignore
   const params = new URLSearchParams(searchParams);
 
   const handleApplyFilters = () => {
@@ -50,30 +52,42 @@ const FilterList = () => {
   }, []);
 
   return (
-    <div className={"flex flex-col gap-y-6 w-[420px]"}>
-      <h4 className={"text-xl text-black"}>Additional filters</h4>
-      <div className={"flex flex-col p-[30px] bg-white shadow"}>
-        {uniqueTags?.map((item) => {
-          const arr = filters.filter((filter) => filter.type === item);
-          return (
-            <FilterItem
-              key={item}
-              type={item}
-              arr={arr}
-              setCheckedFilters={setCheckedFilters}
-            />
-          );
-        })}
-        <Button
-          disabled={checkedFilters.length === 0}
-          className={"mt-11"}
-          onClick={handleApplyFilters}
-        >
-          Apply
-        </Button>
+    <>
+      <div className={"hidden lg:flex flex-col gap-y-6 w-[340px] lg:w-[420px]"}>
+        <h4 className={"text-base lg:text-xl text-black"}>
+          Additional filters
+        </h4>
+        <div className={"flex flex-col p-[30px] bg-white shadow"}>
+          {uniqueTags?.map((item) => {
+            const arr = filters.filter((filter) => filter.type === item);
+            return (
+              <FilterItem
+                key={item}
+                type={item}
+                arr={arr}
+                setCheckedFilters={setCheckedFilters}
+              />
+            );
+          })}
+          <Button
+            disabled={checkedFilters.length === 0}
+            className={"mt-11"}
+            onClick={handleApplyFilters}
+          >
+            Apply
+          </Button>
+        </div>
+        <Subscribe className={"hidden lg:flex flex-wrap-reverse mt-6"} />
       </div>
-      <Subscribe className={"flex-wrap-reverse mt-6"} />
-    </div>
+
+      <FilterListMobile
+        setCheckedFilters={setCheckedFilters}
+        checkedFilters={checkedFilters}
+        filters={filters}
+        handleApplyFilters={handleApplyFilters}
+        uniqueTags={uniqueTags}
+      />
+    </>
   );
 };
 

@@ -24,17 +24,14 @@ const ExcludeIngredients = () => {
     Meat,
     Onion,
   };
-  const renderOptions = () => {
-    return options.map((option) => (
-      <ExcludedItem option={option} images={images} key={option} />
-    ));
-  };
 
   return (
     <div className={"flex flex-col gap-y-5"}>
       <h5 className="font-bold mb-[20px]">Exclude from the recipe:</h5>
       <div className={"flex justify-between items-center"}>
-        {renderOptions()}
+        {options.map((option) => (
+          <ExcludedItem option={option} images={images} key={option} />
+        ))}
       </div>
     </div>
   );

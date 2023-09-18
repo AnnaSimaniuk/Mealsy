@@ -5,12 +5,12 @@ import ExcludeIngredients from "@/components/shared/constructor/constructor-form
 
 const ConstructorForm = async () => {
   return (
-    <div className="flex gap-x-8">
-      <div className="flex flex-col text-xl min-w-[444px] gap-y-14">
+    <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col text-sm lg:text-xl min-w-[250px] lg:min-w-[444px] gap-y-14">
         <AddIngredients />
         <AdditionalIngredients />
       </div>
-      <div className="flex flex-col text-xl gap-y-14 w-full">
+      <div className="flex flex-col text-sm lg:text-xl gap-y-14 w-full">
         <TimeCooking />
         <ExcludeIngredients />
       </div>
