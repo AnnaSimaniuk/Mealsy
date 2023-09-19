@@ -1,9 +1,28 @@
 import RecipeFullInfo from "@/components/shared/recipe-full-info/RecipeFullInfo";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import Layout from "@/components/shared/layout/Layout/Layout";
-import { sameRecipes } from "../../../../lib/actions/recipe.action";
+import {
+  getRecipeBySlug,
+  sameRecipes,
+} from "../../../../lib/actions/recipe.action";
 import RecipeList from "../../../../components/shared/recipe-list/RecipeList";
 import Subscribe from "../../../../components/shared/subscribe/Subscribe";
+import type { Metadata } from "next";
+import { IRecipe } from "@/types/IRecipe";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { name: string };
+}): Promise<Metadata> {
+  const name = params.name;
+  const recipe: IRecipe = await JSON.parse(await getRecipeBySlug(name));
+
+  return {
+    title: `Mealsy | ${recipe.name}`,
+    description: recipe.description || "This is wonderful recipe",
+  };
+}
 
 export default async function RecipeFullPage({
   params,

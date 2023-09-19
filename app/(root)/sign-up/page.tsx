@@ -1,6 +1,12 @@
 import Layout from "@/components/shared/layout/Layout/Layout";
 import SignUpForm from "@/components/form/sign-up-form/SignUpForm";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Mealsy | Sign Up",
+  description:
+    "Sign up to Mealsy to get started with your meal planning journey!",
+};
 export default function SignUp() {
   return (
     <Layout className={"flex"}>

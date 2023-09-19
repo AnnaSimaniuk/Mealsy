@@ -8,6 +8,12 @@ import { authConfig } from "@/lib/configs/auth";
 import { getUser } from "@/lib/actions/user.action";
 import { ISessionUser } from "@/types/ISessionUser";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Mealsy | Profile",
+  description: "Mealsy Profile Page",
+};
 
 export default async function ProfileLayout({
   children,

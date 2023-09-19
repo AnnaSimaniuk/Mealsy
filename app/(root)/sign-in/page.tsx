@@ -3,7 +3,12 @@ import Layout from "@/components/shared/layout/Layout/Layout";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/lib/configs/auth";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Mealsy | Sign In",
+  description: "Sign in to your Mealsy account.",
+};
 export default async function SignIn() {
   const session = await getServerSession(authConfig);
   if (session) redirect("/profile");

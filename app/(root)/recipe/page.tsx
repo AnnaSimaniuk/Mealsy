@@ -5,7 +5,13 @@ import SortList from "@/components/shared/sort-list/SortList";
 import FilterList from "@/components/shared/filter-list/FilterList";
 import FilterRecipeList from "@/components/shared/filter-recipe-list/FilterRecipeList";
 import Subscribe from "@/components/shared/subscribe/Subscribe";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Mealsy | Recipe Catalog",
+  description:
+    "You can find all the recipes here. You can filter them by category, cuisine, and diet.",
+};
 export default async function RecipesPage() {
   return (
     <main>

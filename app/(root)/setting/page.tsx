@@ -8,7 +8,12 @@ import ProfileAvatar from "@/components/shared/profile-header/profile-avatar-lay
 import ProfileAvatarLayout from "@/components/shared/profile-header/profile-avatar-layout/ProfileAvatarLayout";
 import ProfileForm from "@/components/form/profile-form/ProfileForm";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Mealsy | Edit profile",
+  description: "Edit profile page",
+};
 const breadcrumbs = () => {
   return [
     {
