@@ -60,7 +60,11 @@ const BurgerMenuContent = ({ setIsOpen, isOpen }: BurgerMenuContentProps) => {
         </div>
         <SearchInput />
         {session?.data && (
-          <Link href={"/profile"} className={"w-full flex items-center gap-5"}>
+          <Link
+            href={"/profile"}
+            className={"w-full flex items-center gap-5"}
+            onClick={() => setIsOpen(false)}
+          >
             <Avatar>
               <AvatarImage
                 src={
@@ -94,6 +98,7 @@ const BurgerMenuContent = ({ setIsOpen, isOpen }: BurgerMenuContentProps) => {
                   title={title}
                   tagsArr={tags}
                   index={index}
+                  setIsOpen={setIsOpen}
                 />
               ))}
             </Accordion>
@@ -110,20 +115,30 @@ const BurgerMenuContent = ({ setIsOpen, isOpen }: BurgerMenuContentProps) => {
               <ArrowRight className={"ml-auto text-primary w-5 h-5"} />
             </div>
             {session?.data ? (
-              <div className={"link"} onClick={() => signOut()}>
+              <div
+                className={"link"}
+                onClick={() => {
+                  setIsOpen(false);
+                  signOut();
+                }}
+              >
                 Sign Out
               </div>
             ) : (
-              <Link href={"/sign-in"} className={"link"}>
+              <Link
+                href={"/sign-in"}
+                className={"link"}
+                onClick={() => setIsOpen(false)}
+              >
                 Sign In
               </Link>
             )}
             <h5 className={"text-base lg:text-xl"}>Our social networks:</h5>
             <div className={"flex gap-x-5"}>
-              <Link href={"/"}>
+              <Link href={"/"} onClick={() => setIsOpen(false)}>
                 <TelegramIcon />
               </Link>
-              <Link href={"/"}>
+              <Link href={"/"} onClick={() => setIsOpen(false)}>
                 <NetworkIcon />
               </Link>
             </div>

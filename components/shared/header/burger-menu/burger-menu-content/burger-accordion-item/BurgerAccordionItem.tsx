@@ -10,17 +10,22 @@ interface BurgerAccordionItemProps {
   title: string;
   tagsArr: ITag[];
   index: number;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
 const BurgerAccordionItem = ({
   title,
   tagsArr,
   index,
+  setIsOpen,
 }: BurgerAccordionItemProps) => {
   return (
     <AccordionItem value={`item-${index + 1}`} className={"text-sm"}>
       <AccordionTrigger>
-        <Link href={`/recipe?tag-type=${title}&sort=matches`}>
+        <Link
+          href={`/recipe?tag-type=${title}&sort=matches`}
+          onClick={() => setIsOpen(false)}
+        >
           {title.toUpperCase().replace("_", " ")}
         </Link>
       </AccordionTrigger>
@@ -32,6 +37,7 @@ const BurgerAccordionItem = ({
               href={`/recipe?tag-name=${tag.name}&sort=matches`}
               key={tag.id}
               className={"link cursor-pointer"}
+              onClick={() => setIsOpen(false)}
             >
               {tag.display_name}
             </Link>
