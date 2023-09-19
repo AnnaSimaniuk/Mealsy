@@ -37,6 +37,9 @@ module.exports = {
       DEFAULT: "0px 4px 14px rgba(66, 59, 59, 0.1)",
     },
     extend: {
+      fontFamily: {
+        montserrat: ["Montserrat", ...defaultTheme.fontFamily.sans],
+      },
       screens: {
         xs: "425px",
         ...defaultTheme.screens,
