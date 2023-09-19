@@ -17,7 +17,7 @@ const RecipeItem = ({ recipe }: RecipeItemProps) => {
     >
       <div
         className={
-          "relative w-[144px] md:w-[214px] lg:w-[246px] h-[226px] md:h-[346px] rounded-lg font-semibold text-white text-sm md:text-base lg:text-xl"
+          "relative w-[144px] md:w-[214px] lg:w-[246px] h-[226px] md:h-[346px] rounded-lg font-semibold text-white text-xs md:text-base lg:text-xl"
         }
       >
         <Image
@@ -35,8 +35,16 @@ const RecipeItem = ({ recipe }: RecipeItemProps) => {
           id={recipe._id}
           className={"absolute top-2 right-2"}
         />
-        <div className={"absolute bottom-2 left-2 flex gap-2 items-center"}>
-          <HeartIcon fillBorder={"#F7931E"} fillIcon={"#F7931E"} />
+        <div
+          className={
+            "absolute bottom-2 left-2 flex gap-1 md:gap-2 items-center"
+          }
+        >
+          <HeartIcon
+            fillBorder={"#F7931E"}
+            fillIcon={"#F7931E"}
+            className={"w-[24px] h-[24px] md:w-[34px] md:h-[34px]"}
+          />
           {!!recipe.ratings_positive && <span>{recipe.ratings_positive}</span>}
         </div>
         {!!recipe.total_time && (
