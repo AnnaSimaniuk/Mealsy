@@ -12,6 +12,7 @@ import RecipeVideo from "@/components/shared/recipe-full-info/recipe-video/Recip
 import RecipeInstruction from "@/components/shared/recipe-full-info/recipe-instruction/RecipeInstruction";
 import RecipeLiked from "@/components/shared/recipe-full-info/recipe-liked/RecipeLiked";
 import RecipeProvider from "@/components/context/RecipeContext";
+import { Providers } from "@/components/provider/Providers";
 
 interface RecipeFullInfoProps {
   params: {
@@ -49,7 +50,9 @@ const RecipeFullInfo = async ({ params }: RecipeFullInfoProps) => {
             </div>
           </div>
         </div>
-        <RecipeIngredients />
+        <Providers>
+          <RecipeIngredients />
+        </Providers>
         <RecipeTags params={params} />
       </div>
       <div className={"flex flex-col gap-y-8 flex-1"}>

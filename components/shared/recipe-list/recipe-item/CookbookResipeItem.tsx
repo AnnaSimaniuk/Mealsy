@@ -25,12 +25,12 @@ const CookbookRecipeItem = ({
   return (
     <div
       className={
-        "flex flex-col gap-y-5 w-[166px] md:w-[214px] lg:w-[246px] items-start"
+        "flex flex-col gap-y-5 w-[144px] md:w-[214px] lg:w-[246px] items-start"
       }
     >
       <div
         className={
-          "relative w-[166px] md:w-[214px] lg:w-[246px] h-[226px] md:h-[346px] rounded-lg font-semibold text-white text-sm md:text-base lg:text-xl"
+          "relative w-[144px] md:w-[214px] lg:w-[246px] h-[226px] md:h-[346px] rounded-lg font-semibold text-white text-sm md:text-base lg:text-xl"
         }
       >
         <Image
@@ -39,7 +39,7 @@ const CookbookRecipeItem = ({
           width={246}
           height={346}
           className={
-            "rounded-lg w-[166px] md:w-[214px] lg:w-[246px] h-[226px] md:h-[346px] object-cover"
+            "rounded-lg w-[144px] md:w-[214px] lg:w-[246px] h-[226px] md:h-[346px] object-cover"
           }
         />
         <div

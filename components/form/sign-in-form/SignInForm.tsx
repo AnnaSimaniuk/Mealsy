@@ -26,9 +26,6 @@ import ForgotPassword from "@/components/shared/auth/forgot-password/ForgotPassw
 const SignInForm = () => {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const form = useForm<z.infer<typeof signInValidation>>({
     resolver: zodResolver(signInValidation),
@@ -61,7 +58,7 @@ const SignInForm = () => {
         duration: 3000,
       });
       form.reset();
-      router.push(callbackUrl);
+      window.location.href = "/";
     }
   };
 

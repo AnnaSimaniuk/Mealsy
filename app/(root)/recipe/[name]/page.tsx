@@ -9,6 +9,8 @@ import RecipeList from "../../../../components/shared/recipe-list/RecipeList";
 import Subscribe from "../../../../components/shared/subscribe/Subscribe";
 import type { Metadata } from "next";
 import { IRecipe } from "@/types/IRecipe";
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/lib/configs/auth";
 
 export async function generateMetadata({
   params,

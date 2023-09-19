@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "../../../ui/use-toast";
 import SpinnerIcon from "../../../../assets/icons/SpinnerIcon";
+import { useSession } from "next-auth/react";
 
 const RecipeIngredients = () => {
   const params = useParams();
@@ -14,7 +15,7 @@ const RecipeIngredients = () => {
   const [checkAll, setCheckAll] = useState(false);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
-
+  const session = useSession();
   const renderIngredients = () => {
     return ingredients?.ingredient_sections.map((section) => {
       return (
@@ -47,24 +48,39 @@ const RecipeIngredients = () => {
   };
 
   const handleAddIngredients = async () => {
-    setLoading(true);
-    const res = await fetch(`/api/shopping-list`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        recipeName: params.name,
-        neededIngredients: shoppingList,
-      }),
-    });
-    const data = await res.json();
-    setLoading(false);
-    toast({
-      title: "Happy shopping!",
-      description: `${data}! 🛒`,
-      duration: 3000,
-    });
+    if (session?.data) {
+      setLoading(true);
+      const res = await fetch(`/api/shopping-list`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          recipeName: params.name,
+          neededIngredients: shoppingList,
+        }),
+      });
+      const data = await res.json();
+      setLoading(false);
+      toast({
+        title: "Happy shopping!",
+        description: `${data}! 🛒`,
+        duration: 3000,
+      });
+    } else {
+      toast({
+        title: "Sorry. You can't add this recipe to shopping list. 😔",
+        description: (
+          <>
+            <p>
+              Please login to add this recipe to shopping list. Thank you! 😊
+            </p>
+          </>
+        ),
+        variant: "destructive",
+        duration: 5000,
+      });
+    }
   };
 
   useEffect(() => {
