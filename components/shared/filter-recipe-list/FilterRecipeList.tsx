@@ -35,7 +35,7 @@ const FilterRecipeList = () => {
       }
     >
       <RecipeProvider>
-        <div className={"flex flex-wrap justify-between gap-y-[30px]"}>
+        <div className={"flex flex-wrap justify-between gap-y-[30px] gap-x-1"}>
           {recipes.map((recipe) => (
             <RecipeItem recipe={recipe} key={recipe.id_} />
           ))}

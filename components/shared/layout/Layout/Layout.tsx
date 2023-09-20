@@ -6,7 +6,11 @@ interface LayoutProps {
 }
 
 const Layout = ({ children, className = "" }: LayoutProps) => {
-  return <div className={`container mx-auto ${className}`}>{children}</div>;
+  return (
+    <div className={`container mx-auto px-2.5 md:px-8 ${className}`}>
+      {children}
+    </div>
+  );
 };
 
 export default Layout;

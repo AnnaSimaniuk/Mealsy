@@ -8,7 +8,9 @@ const Subscribe = ({ className = "" }: { className?: string }) => {
     <Layout
       className={`relative bg-white shadow flex mb-36 overflow-hidden rounded-[5px] p-0 ${className}`}
     >
-      <div className={"flex flex-col gap-[30px] py-12 px-16 z-10"}>
+      <div
+        className={"flex flex-col gap-[30px] py-12 px-6 sm:px-10 md:px-16 z-10"}
+      >
         <h2 className={"text-sm md:text-2xl lg:text-4xl font-bold"}>
           Every week a selection of new recipes is in your mail!
         </h2>

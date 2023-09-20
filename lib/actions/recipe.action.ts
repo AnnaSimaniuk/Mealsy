@@ -25,7 +25,7 @@ export const getRandomRecipe = async () => {
   try {
     await connectToDB();
     const count = await Recipe.countDocuments();
-    // const random = Math.floor(Math.random() * count); //TODO: uncomment this line
+    const random = Math.floor(Math.random() * count);
     return await Recipe.findOne().skip(0);
   } catch (error) {
     throw new Error(error.message);

@@ -38,7 +38,11 @@ const RecipeFullInfo = async ({ params }: RecipeFullInfoProps) => {
           />
           <div className={"flex flex-col gap-5 lg:hidden"}>
             <h1 className={"text-xl lg:text-3xl font-bold"}>{recipe.name}</h1>
-            <div className={"flex justify-between gap-x-10 items-center"}>
+            <div
+              className={
+                "flex justify-between gap-x-10 items-center gap-y-5 flex-col sm:flex-row"
+              }
+            >
               {recipe.keywords && <RecipeKeywords keywords={recipe.keywords} />}
               <RecipeProvider>
                 <RecipeActionBtns

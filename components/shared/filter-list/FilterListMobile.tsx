@@ -5,6 +5,7 @@ import { ITag } from "@/types/ITag";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import FilterIcon from "@/assets/icons/FilterIcon";
@@ -26,14 +27,10 @@ const FilterListMobile = ({
 }: FilterListMobileProps) => {
   return (
     <DropdownMenu>
-      <div
-        className={
-          "absolute flex lg:hidden flex-col gap-y-6 min-w-[320px] lg:w-[420px]"
-        }
-      >
+      <div className={"absolute flex lg:hidden flex-col gap-y-6"}>
         <DropdownMenuTrigger
           className={
-            "text-base lg:text-xl text-black flex items-center gap-x-4"
+            "text-base lg:text-xl text-black flex items-center gap-x-4 w-fit"
           }
         >
           <span className={"hidden md:block"}>Additional filters</span>
@@ -44,12 +41,14 @@ const FilterListMobile = ({
             "flex flex-col p-[30px] bg-white shadow min-w-[320px] overflow-y-auto mb-10"
           }
         >
-          <Button
-            disabled={checkedFilters.length === 0}
-            onClick={handleApplyFilters}
-          >
-            Apply
-          </Button>
+          <DropdownMenuItem>
+            <Button
+              disabled={checkedFilters.length === 0}
+              onClick={handleApplyFilters}
+            >
+              Apply
+            </Button>
+          </DropdownMenuItem>
           {uniqueTags?.map((item) => {
             const arr = filters.filter((filter) => filter.type === item);
             return (

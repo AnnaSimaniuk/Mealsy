@@ -14,9 +14,9 @@ interface RecipeListProps {
 
 const RecipeList = ({ title, arr, button }: RecipeListProps) => {
   return (
-    <Layout
+    <div
       className={
-        "flex flex-col gap-y-5 lg:gap-y-12 items-center mb-12 lg:mb-36 px-2.5 sm:px-0"
+        "flex flex-col gap-y-5 lg:gap-y-12 items-center mb-12 lg:mb-36 px-0"
       }
     >
       <h2 className={"font-bold text-xl lg:text-4xl self-start"}>{title}</h2>
@@ -32,7 +32,7 @@ const RecipeList = ({ title, arr, button }: RecipeListProps) => {
         </div>
       </RecipeProvider>
       {button}
-    </Layout>
+    </div>
   );
 };
 

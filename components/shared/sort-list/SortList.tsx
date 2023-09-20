@@ -31,7 +31,7 @@ const SortList = () => {
 
   return (
     <div className={"flex ml-auto gap-x-5 text-base lg:text-xl text-black"}>
-      <div className={"flex gap-x-1.5 items-center"}>
+      <div className={"flex gap-1.5 items-center flex-col md:flex-row"}>
         <h6>Sort by:</h6>
         <DropdownMenu>
           <DropdownMenuTrigger
